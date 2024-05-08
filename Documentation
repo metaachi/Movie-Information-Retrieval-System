@@ -1,0 +1,24 @@
+# Scraping MetaCritic
+
+## Introduction
+This Python script scrapes movie data from the Metacritic website using the `requests` library to fetch data and `BeautifulSoup` to process HTML elements. The scraped data is saved to a CSV file and then converted into a DataFrame for further analysis. The script provides functionalities for searching movies, directors, and comparing directors based on the genres of movies they have directed.
+
+## Code Explanation
+1. **Fetching:** Data from 5 pages (500 rows) is fetched using a loop with the `requests` library and parsed using BeautifulSoup. Additional helper functions are created to fetch director and genre details from separate routes.
+2. **Creating Dictionary from Data:** Processed data is iterated over to extract information such as "Number," "Movie," "Genre," "Date," "UserScore," "MetaScore," "CertRating," and "Director," which are added to a dictionary.
+3. **CSV File and DataFrame:** The dictionary is used to create a CSV file using `csv.DictWriter()` and a DataFrame using the Pandas library.
+4. **Main Menu:** The main function runs a loop to display a user menu until the user exits. Options include searching by movie, director, and comparing directors. Invalid inputs prompt the user to re-enter their choice.
+
+## Comparison of Three Directors
+### Genres:
+- Francis Ford Coppola: Drama:6, Thriller:3, Crime:2, Action:2, War:3, Mystery:2
+- Orson Welles: Drama:3, Mystery:1, Thriller:1, Crime:1, Film-Noir:1, History:1, Comedy:1, War:1
+- Alfred Hitchcock: Mystery:8, Thriller:11, Romance:4, Drama:2, Film-Noir:3, Action:1, Adventure:1, Horror:2, War:1, Crime:1
+
+### Cosine Scores:
+- Francis Ford Coppola and Orson Welles: 0.61397694673677
+- Orson Welles and Alfred Hitchcock: 0.06756756756756757
+- Francis Ford Coppola and Alfred Hitchcock: 0.26691730642466815
+
+## Conclusion
+The cosine scores indicate the similarity between the genres directed by the respective directors. The high cosine score (> 0.5) between Francis Ford Coppola and Orson Welles suggests significant genre similarity, whereas the low score (< 0.1) between Orson Welles and Alfred Hitchcock implies little similarity in their directed genres. Similarly, the moderate score (around 0.27) between Francis Ford Coppola and Alfred Hitchcock suggests some common genres but not as much as with Orson Welles.
